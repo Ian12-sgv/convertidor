@@ -58,43 +58,49 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ url }) => {
       {error && <h2 className="error">{error}</h2>}
       <form className="currency-converter">
         <div>
-          <label>Amount:</label>
+          <label className="label">Amount:</label>
           <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}
             required
+            className="input"
           />
         </div>
-        <div>
-          <label>From:</label>
-          <select
-            value={fromCurrency}
-            onChange={(e) => setFromCurrency(e.target.value)}
-            required
-          >
-            {currencies.map((currency) => (
-              <option value={currency} key={`from_${currency}`}>
-                {currency}
-              </option>
-            ))}
-          </select>
+        <div className="currencies">
+          <div>
+            <label>From:</label>
+            <select
+              value={fromCurrency}
+              onChange={(e) => setFromCurrency(e.target.value)}
+              required
+              className="input"
+            >
+              {currencies.map((currency) => (
+                <option value={currency} key={`from_${currency}`}>
+                  {currency}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>To:</label>
+            <select
+              value={toCurrency}
+              onChange={(e) => setToCurrency(e.target.value)}
+              required
+              className="input"
+            >
+              {currencies.map((currency) => (
+                <option value={currency} key={`to_${currency}`}>
+                  {currency}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div>
-          <label>To:</label>
-          <select
-            value={toCurrency}
-            onChange={(e) => setToCurrency(e.target.value)}
-            required
-          >
-            {currencies.map((currency) => (
-              <option value={currency} key={`to_${currency}`}>
-                {currency}
-              </option>
-            ))}
-          </select>
-        </div>
-        <h2>
+
+        <h2 className="result">
           {amount} {fromCurrency} = {convertedAmount} {toCurrency}
         </h2>
       </form>
